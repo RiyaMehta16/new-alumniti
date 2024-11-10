@@ -18,7 +18,6 @@ const Message = ({ userId }) => {
                 },
             });
 
-            console.log(response.data);
 
             // Check if the response is an array
             if (Array.isArray(response.data)) {
