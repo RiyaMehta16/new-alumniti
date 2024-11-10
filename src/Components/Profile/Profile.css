@@ -1,0 +1,10 @@
+.bg-pic{
+    background-image: url("../Assets//bg\ pic.jpg");
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    height: 200px;
+    width: 1000px;
+    background-size: 100% 200px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
