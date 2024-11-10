@@ -38,7 +38,7 @@ function Profile() {
       const endpoint = isAdmin
         ? "/api/auth/profile"
         : "/api/auth/profile-alumni"; // Use profile-alumni if applicable
-      const res = await axios.get(`http://localhost:5000${endpoint}`, {
+      const res = await axios.get(`https://alumniti-server.vercel.app${endpoint}`, {
         headers: {
           Authorization: `Bearer ${token}`, // Include token for authorization
         },

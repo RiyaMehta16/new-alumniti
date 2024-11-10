@@ -19,7 +19,7 @@ const AdminDashboard = () => {
             }
 
             try {
-                const response = await axios.get('http://localhost:5000/api/auth/users', {
+                const response = await axios.get('https://alumniti-server.vercel.app/api/auth/users', {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 setUsers(response.data);
@@ -47,7 +47,7 @@ const AdminDashboard = () => {
 
         const token = localStorage.getItem('token');
         try {
-            const response = await axios.post(`http://localhost:5000/api/auth/approve/${userId}`, {}, {
+            const response = await axios.post(`https://alumniti-server.vercel.app/api/auth/approve/${userId}`, {}, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             alert('User approved successfully');

@@ -14,7 +14,7 @@ function Connection() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/auth/get-all-users", {
+        const response = await axios.get("https://alumniti-server.vercel.app/api/auth/get-all-users", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`, // Include your token for authentication
           },

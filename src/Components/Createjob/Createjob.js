@@ -29,7 +29,7 @@ function CreateJobPage() {
     try {
       const token = localStorage.getItem('token'); // Assuming you're using JWT stored in localStorage
       const response = await axios.post(
-        'http://localhost:5000/api/auth/createpost', // Adjust the URL to your backend
+        'https://alumniti-server.vercel.app/api/auth/createpost', // Adjust the URL to your backend
         formData,
         {
           headers: {

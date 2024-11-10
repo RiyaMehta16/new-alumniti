@@ -13,7 +13,7 @@ function CreateCollaboration() {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.post("http://localhost:5000/api/auth/createcollab",
+      const res = await axios.post("https://alumniti-server.vercel.app/api/auth/createcollab",
         {collabTitle, RoleNeed, skills, startDate, endDate},{
             headers: {
               Authorization: `Bearer ${token}`, // Pass the token for authentication

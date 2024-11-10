@@ -20,7 +20,7 @@ function HeroCollabration() {
     useEffect(()=>{
       const fetchJob=async()=>{
         try {
-          const res = await axios.get('http://localhost:5000/api/auth/getcollabs',{
+          const res = await axios.get('https://alumniti-server.vercel.app/api/auth/getcollabs',{
             headers: {
             Authorization: `Bearer ${token}` // Include token for authorization
           }

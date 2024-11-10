@@ -15,7 +15,7 @@ function CreateEventPage() {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.post("http://localhost:5000/api/auth/createevent",
+      const res = await axios.post("https://alumniti-server.vercel.app/api/auth/createevent",
         {title, dateTime, topic, organizedBy, format, joinLink, description},{
             headers: {
               Authorization: `Bearer ${token}`, // Pass the token for authentication

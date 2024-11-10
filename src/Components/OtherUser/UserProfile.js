@@ -30,7 +30,7 @@ function UserProfile() {
     const fetchUserProfile = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/auth/otherprofile/${userId}`,
+          `https://alumniti-server.vercel.app/api/auth/otherprofile/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

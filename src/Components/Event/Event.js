@@ -15,7 +15,7 @@ function Event() {
     const fetchEvent = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:5000/api/auth/getevents",
+          "https://alumniti-server.vercel.app/api/auth/getevents",
           {
             headers: {
               Authorization: `Bearer ${token}`, // Include token for authorization

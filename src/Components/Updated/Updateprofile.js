@@ -62,7 +62,7 @@ const UpdateProfile = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:5000/api/auth/profile-alumni",
+          "https://alumniti-server.vercel.app/api/auth/profile-alumni",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -150,7 +150,7 @@ const UpdateProfile = () => {
       const url = await uploadImg(img);
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        "http://localhost:5000/api/auth/update",
+        "https://alumniti-server.vercel.app/api/auth/update",
         {
           name,
           email,
