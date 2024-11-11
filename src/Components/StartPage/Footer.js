@@ -21,6 +21,9 @@ function Footer() {
               </div>
             </div>
         </div>
+        <div className='mt-12 flex justify-end'>
+          Built by Yogesh, Amandeep, Manjeet, Nikhil, Riya..!
+        </div>
       </div>
     </div>
   )

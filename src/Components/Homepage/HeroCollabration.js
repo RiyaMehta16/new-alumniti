@@ -75,9 +75,9 @@ function HeroCollabration() {
     <div className='flex flex-wrap  mt-8 gap-6 justify-center items-center'>
 
     {collab.map((collab, index)=>(
-      <div className="bg-white shadow-lg w-[400px] rounded-md p-6 text-gray-800 border border-gray-200">
+      <div className="bg-white shadow-lg w-[400px] min-h-[480px] rounded-md p-6 text-gray-800 border border-gray-200">
         <div className="flex items-center gap-3 mb-4">
-           <img src={pic} className="h-16 w-16 rounded-full border-4 border-white shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out" alt="Profile" />
+           <img src={collab.postedBy.img} className="h-16 w-16 rounded-full border-4 border-white shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out" alt="Profile" />
            <div>
             <h2 className="text-xl font-semibold">{collab.postedBy.name}({collab.postedBy.role})</h2>
             <span className="text-sm text-gray-600">21m ago</span>
