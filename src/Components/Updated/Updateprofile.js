@@ -80,7 +80,6 @@ const UpdateProfile = () => {
         setLocation(userData.location || [""])
         setPortfolio(userData.portfolio || [""])
         setLinkdin(userData.linkdin || [""])
-        setImg(userData.img || [""])
       } catch (err) {
         console.error("Error fetching profile:", err);
         setError("Failed to load profile data.");
