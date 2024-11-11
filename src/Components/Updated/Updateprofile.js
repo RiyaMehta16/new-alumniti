@@ -174,8 +174,8 @@ const UpdateProfile = () => {
       alert("Profile updated successfully!")
       navigate('/profile')
     } catch (err) {
-      console.error("Error updating profile:", err);
-      setError(err.response?.data?.error || "Failed to update profile.");
+      console.log(err.response.message);
+      
     } finally {
       setLoading(false);
     }
@@ -356,6 +356,7 @@ const UpdateProfile = () => {
                   value={skill}
                   onChange={(e) => handleSkillChange(index, e.target.value)}
                   className="bg-white pt-2 rounded-md pb-2 pl-2 pr-2 w-[470px] mt-1 mb-2"
+                  required
                 />
                 </div>
                 <button type="button" onClick={() => removeSkill(index)} className="text-blue-700 underline">
@@ -377,6 +378,7 @@ const UpdateProfile = () => {
               onChange={(e) => setAbout(e.target.value)}
               className="bg-white pt-2 rounded-md pb-2 pl-2 pr-2 w-1/2 min-h-28"
               placeholder="Hello, I am Yogesh Kumar"
+              required
             />
             </div>
             <div className="h-[1px] w-full bg-zinc-200  rounded-md mt-3 mb-10"></div>
@@ -389,6 +391,7 @@ const UpdateProfile = () => {
               onChange={(e) => setLocation(e.target.value)}
               className="bg-white pt-2 rounded-md pb-2 pl-2 pr-2 w-1/2"
               placeholder="Bathinda, Punjab"
+              required
             />
             </div>
             <div className="h-[1px] w-full bg-zinc-200  rounded-md mt-3 mb-10"></div>
@@ -437,6 +440,7 @@ const UpdateProfile = () => {
               onChange={(e) => setLinkdin(e.target.value)}
               className="bg-white pt-2 rounded-md pb-2 pl-2 pr-2 w-1/2"
               placeholder="linkdin link"
+              required
             />
             </div>
             <div className="h-[1px] w-full bg-zinc-200  rounded-md mt-3 mb-10"></div>

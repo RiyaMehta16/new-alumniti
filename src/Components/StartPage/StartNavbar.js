@@ -44,20 +44,21 @@ function StartNavbar() {
               </a>
             </li>
           </div>
-          {token?(<button
-            className=" bg-blue-700 pt-1 pb-1 h-[40px] pl-6 pr-6 rounded text-white"
-            onClick={handleDashboardRedirect}
-          >
-            Dashboard
-          </button>):(
+          {token ? (
+            <button
+              className=" bg-blue-700 pt-1 pb-1 h-[40px] pl-6 pr-6 rounded text-white"
+              onClick={handleDashboardRedirect}
+            >
+              Dashboard
+            </button>
+          ) : (
             <a
-            className=" bg-blue-700 pt-1 pb-1 flex justify-center items-center h-[40px] pl-6 pr-6 rounded text-white"
-            href="/login"
-          >
-            Login
-          </a>
+              className=" bg-blue-700 pt-1 pb-1 flex justify-center items-center h-[40px] pl-6 pr-6 rounded text-white"
+              href="/login"
+            >
+              Login
+            </a>
           )}
-          
         </div>
       </div>
       <div>
