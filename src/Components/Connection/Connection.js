@@ -57,7 +57,7 @@ function Connection() {
                     <div className="flex items-center justify-center mt-[-60px]">
                       <img
                         className="h-[120px] w-[120px] rounded-full border-4 border-white"
-                        src={user.profilePic} // Optional chaining for a dynamic profile picture if available
+                        src={user.img} // Optional chaining for a dynamic profile picture if available
                         alt="Profile"
                       />
                     </div>
