@@ -32,44 +32,53 @@ const Chatbot = () => {
           { type: 'bot', text: botMessage }
         ]);
       }
-    }, 50); // Adjust speed of typing by changing this interval (milliseconds)
+    }, 20); // Adjust speed of typing by changing this interval (milliseconds)
   };
 
-  // Function to send a message to the Gemini API
   const sendMessage = async (userMessage) => {
-    try {
-      const response = await axios.post(
-        'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyCs_8HUuo67VgI2ZQsDtOS6wtu5fJYefX4',
-        {
-          contents: [
-            {
-              parts: [{ text: userMessage }] // Send user message to API
+    // Add the user's message to the chat immediately
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { type: 'user', text: userMessage }
+    ]);
+  
+    setIsTyping(true); // Show loading indicator
+    setTypingMessage('Typing...'); // Clear previous typing message
+  
+    // Simulate a delay (5-10 seconds) before bot response
+    setTimeout(async () => {
+      try {
+        // Call the API after the delay
+        const response = await axios.post(
+          'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyCs_8HUuo67VgI2ZQsDtOS6wtu5fJYefX4',
+          {
+            contents: [
+              {
+                parts: [{ text: userMessage }]
+              }
+            ]
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json'
             }
-          ]
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json' // Set content type to JSON
           }
-        }
-      );
-
-      // Get bot's response from API
-      const botMessage =
-        response?.data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-        'No response from the bot';
-
-      // Add user message to chat and trigger typing effect for bot message
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { type: 'user', text: userMessage }
-      ]);
-
-      typeMessage(botMessage); // Simulate typing the bot's message
-    } catch (error) {
-      console.error('Error communicating with Gemini API:', error);
-    }
+        );
+  
+        // Extract bot's response from the API response
+        const botMessage =
+          response?.data?.candidates?.[0]?.content?.parts?.[0]?.text ||
+          'No response from the bot';
+  
+        // Trigger typing effect for bot message
+        typeMessage(botMessage);
+      } catch (error) {
+        console.error('Error communicating with Gemini API:', error);
+      }
+    }, 5000); // 5-second delay before the bot starts typing
   };
+  
+
 
   // Automatically scroll the chat to the bottom when new messages are added
   useEffect(() => {
