@@ -241,6 +241,7 @@ const UpdateProfile = () => {
                     handleJobChange(index, "title", e.target.value)
                   }
                   className="bg-white pt-2 rounded-md pb-2 pl-2 pr-2 w-[470px] mt-1 mb-2"
+                  required
                 />
                 </div>
                 <div className="w-1/2 flex flex-col">
@@ -252,6 +253,7 @@ const UpdateProfile = () => {
                     handleJobChange(index, "company", e.target.value)
                   }
                   className="bg-white pt-2 rounded-md pb-2 pl-2 pr-2 w-full mt-1 mb-2"
+                  required
                 />
                 </div>
                 <div className="w-1/2 flex flex-col">
@@ -263,6 +265,7 @@ const UpdateProfile = () => {
                     handleJobChange(index, "startDate", e.target.value)
                   }
                   className="bg-white pt-2 rounded-md pb-2 pl-2 pr-2 w-[470px] mt-1 mb-2"
+                  required
                 />
                 </div>
                 <div className="w-1/2 flex flex-col">
@@ -274,6 +277,7 @@ const UpdateProfile = () => {
                     handleJobChange(index, "endDate", e.target.value)
                   }
                   className="bg-white pt-2 rounded-md pb-2 pl-2 pr-2 w-full mt-1 mb-2"
+                  required
                 />
                 </div>
                 <div className="w-1/2 flex flex-col">
@@ -284,6 +288,7 @@ const UpdateProfile = () => {
                     handleJobChange(index, "description", e.target.value)
                   }
                   className="bg-white pt-2 rounded-md pb-2 pl-2 pr-2 w-[470px] mt-1 mb-2"
+                  required
                 />
                 </div>
                 <button type="button" className="text-blue-700 underline" onClick={() => removeJob(index)}>
@@ -310,6 +315,7 @@ const UpdateProfile = () => {
                     handleEducationChange(index, "name", e.target.value)
                   }
                   className="bg-white pt-2 rounded-md pb-2 pl-2 pr-2 w-[470px] mt-1 mb-2"
+                  required
                 />
                 </div>
                 <div className="w-1/2 flex flex-col">
@@ -321,6 +327,7 @@ const UpdateProfile = () => {
                     handleEducationChange(index, "year", e.target.value)
                   }
                   className="bg-white pt-2 rounded-md pb-2 pl-2 pr-2 w-full mt-1 mb-2"
+                  required
                 />
                 </div>
                 <div className="w-1/2 flex flex-col">
@@ -332,6 +339,7 @@ const UpdateProfile = () => {
                     handleEducationChange(index, "degree", e.target.value)
                   }
                   className="bg-white pt-2 rounded-md pb-2 pl-2 pr-2 w-[470px] mt-1 mb-2"
+                  required
                 />
                 </div>
                 <button type="button" className="text-blue-700 underline" onClick={() => removeEducation(index)}>
@@ -404,6 +412,7 @@ const UpdateProfile = () => {
               onChange={(e) => setCurrentjob(e.target.value)}
               className="bg-white pt-2 rounded-md pb-2 pl-2 pr-2 w-1/2"
               placeholder="Full Stack Developer || Company Name"
+              required
             />
             </div>
             <div className="h-[1px] w-full bg-zinc-200  rounded-md mt-3 mb-10"></div>
@@ -416,6 +425,7 @@ const UpdateProfile = () => {
               onChange={(e) => setPortfolio(e.target.value)}
               className="bg-white pt-2 rounded-md pb-2 pl-2 pr-2 w-1/2"
               placeholder="portfolio link"
+              required
             />
             </div>
             <div className="h-[1px] w-full bg-zinc-200  rounded-md mt-3 mb-10"></div>
@@ -428,6 +438,7 @@ const UpdateProfile = () => {
               onChange={(e) => setGithub(e.target.value)}
               className="bg-white pt-2 rounded-md pb-2 pl-2 pr-2 w-1/2"
               placeholder=" github link"
+              required
             />
             </div>
             <div className="h-[1px] w-full bg-zinc-200  rounded-md mt-3 mb-10"></div>
@@ -451,6 +462,7 @@ const UpdateProfile = () => {
                 type="file"
                 onChange={imgChange}
                 className="border border-white outline-none rounded w-1/2 bg-white pl-2 pr-2 pt-1 pb-1"
+                required
               />
             </div>
 
