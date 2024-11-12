@@ -1,7 +1,7 @@
 import React from "react";
 import { Activity, Gem, Lightbulb, PenLine } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import logo from "../Assets/logo alumni.png";
+import logo from "../Assets/logo2.jpg";
 
 function StartNavbar() {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ function StartNavbar() {
   return (
     <div className="sticky top-0">
       <div className="flex justify-between bg-white h-[60px] items-center pl-10 pr-10 w-full">
-        <img src={logo} className="h-[150px] ml-4"></img>
+        <img src={logo} className="h-[150px] ml-4 mix-blend-multiply"></img>
 
         <div className="mr-10 flex gap-8 justify-center items-center w-1/4">
           <div>

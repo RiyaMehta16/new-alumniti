@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Profile from "../Assets/yogesh dp.jpg"
 import { Home, Sparkle, Users } from 'lucide-react'
 import { NavLink } from 'react-router-dom';
-import logo from "../Assets/logo.png"
+import logo from "../Assets/logo2.jpg"
 import { useEffect } from 'react';
 import axios from 'axios';
 
@@ -37,7 +37,7 @@ function Navbar() {
     <>
     <div className='flex justify-between h-[60px] items-center bg-white'>
       <div className='ml-12'>
-      <img src={logo} className='h-[150px]'></img>
+      <img src={logo} className='h-[150px] mix-blend-multiply'></img>
       </div>
       {/*<div>
         <li className='flex gap-[60px] text-[17px]'>
