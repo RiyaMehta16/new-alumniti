@@ -6,6 +6,7 @@ const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -20,12 +21,9 @@ const AdminDashboard = () => {
       }
 
       try {
-        const response = await axios.get(
-          "https://alumniti-server.vercel.app/api/auth/users",
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+        const response = await axios.get(apiUrl + "/api/auth/users", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setUsers(response.data);
       } catch (error) {
         if (error.response && error.response.status === 403) {
@@ -52,7 +50,7 @@ const AdminDashboard = () => {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        `https://alumniti-server.vercel.app/api/auth/approve/${userId}`,
+        apiUrl + `/api/auth/approve/${userId}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -75,7 +73,8 @@ const AdminDashboard = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-full w-full mt-[350px] text-purple-700">
-        <Loader className="animate-spin duration-[5000ms] mr-2 text-purple-700"  /> Please Wait Your Dashboard is Rendering
+        <Loader className="animate-spin duration-[5000ms] mr-2 text-purple-700" />{" "}
+        Please Wait Your Dashboard is Rendering
       </div>
     );
   }
