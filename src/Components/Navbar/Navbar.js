@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { NavLink } from "react-router-dom";
-import logo from "../Assets/logo2.jpg";
+import logo from "../Assets/alumnitiLogo.png";
 import { useEffect } from "react";
 import axios from "axios";
 
@@ -42,7 +42,7 @@ function Navbar() {
           <NavLink to="/">
             <img
               src={logo}
-              className="h-[150px] mix-blend-multiply"
+              className="h-[40px] mix-blend-multiply"
               alt="logo"
             />
           </NavLink>

@@ -1,28 +1,38 @@
-import React from 'react'
-import QuestionPage from './QuestionPage';
+import React from "react";
+import QuestionPage from "./QuestionPage";
 
 function Question() {
-    const accordionItems = [
-        {
-          title: 'Who can make profile?',
-          content: 'Anyone students and teachers.',
-        },
-        {
-          title: 'Who will be our  mentor? They all are from same college?',
-          content: 'Anyone with good expertise in their field and they can be from any where.',
-        },
-        {
-          title: 'How AI is useful in this?',
-          content: 'Using recommend search.',
-        },
-      ];
+  const accordionItems = [
+    {
+      title: "Who can create a profile?",
+      content:
+        "Students, alumni, and faculty members are welcome to create a profile.",
+    },
+    {
+      title: "Are the mentors only from our college?",
+      content:
+        "No, mentors can come from various institutions and industries, bringing diverse expertise.",
+    },
+    {
+      title: "How does the AI feature enhance the platform?",
+      content:
+        "AI helps by recommending relevant connections, mentors, and resources based on your profile and interests.",
+    },
+
+    {
+      title: "How do I find a mentor?",
+      content:
+        "You can search for mentors based on their expertise, industry, or field of study, and send them a request to connect.",
+    },
+  ];
+
   return (
     <div>
-      <div className="flex items-center justify-center mt-[100px]">
-      <QuestionPage items={accordionItems} />
+      <div className="flex items-center justify-center mt-[100px] text-indigo-100">
+        <QuestionPage items={accordionItems} />
+      </div>
     </div>
-    </div>
-  )
+  );
 }
 
-export default Question
+export default Question;

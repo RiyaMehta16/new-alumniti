@@ -1,20 +1,22 @@
-import { ChevronDown, ChevronUp } from 'lucide-react';
-import React from 'react'
-import { useState } from 'react';
-import { useRef } from 'react';
+import { ChevronDown, ChevronUp } from "lucide-react";
+import React from "react";
+import { useState } from "react";
+import { useRef } from "react";
 
-function QuestionPage({items}) {
-    const [activeIndex, setActiveIndex] = useState(null);
-    const contentRefs = useRef([]);
+function QuestionPage({ items }) {
+  const [activeIndex, setActiveIndex] = useState(null);
+  const contentRefs = useRef([]);
 
-    const toggleAccordion = (index) => {
-      setActiveIndex(activeIndex === index ? null : index);
-    };
+  const toggleAccordion = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
   return (
     <div className="w-[600px]">
-      <div className='flex flex-col justify-center items-center mb-[50px]'>
-        <h1 className='font-medium text-3xl'>FAQs</h1>
-        <p className='font-medium text-gray-500'>Get answers of your queries</p>
+      <div className="flex flex-col justify-center items-center mb-[50px]">
+        <h1 className="font-medium text-3xl">FAQs</h1>
+        <p className="font-medium text-neutral-500">
+          Get answers of your queries
+        </p>
       </div>
       {items.map((item, index) => (
         <div key={index} className="">
@@ -22,27 +24,32 @@ function QuestionPage({items}) {
             className="w-full text-left py-4 px-6 focus:outline-none"
             onClick={() => toggleAccordion(index)}
           >
-            <div className="flex justify-between items-center hover:underline">
+            <div className="flex justify-between items-center text-indigo-200 hover:text-indigo-50 hover:font-extrabold">
               <span className="font-medium">{item.title}</span>
-              <span>{activeIndex === index ? <ChevronUp/> : <ChevronDown/>}</span>
+              <span>
+                {activeIndex === index ? <ChevronUp /> : <ChevronDown />}
+              </span>
             </div>
           </button>
           <div
             ref={(el) => (contentRefs.current[index] = el)}
             style={{
-              maxHeight: activeIndex === index ? `${contentRefs.current[index].scrollHeight}px` : '0',
+              maxHeight:
+                activeIndex === index
+                  ? `${contentRefs.current[index].scrollHeight}px`
+                  : "0",
             }}
             className={`overflow-hidden transition-[max-height] duration-300 ease-in-out`}
           >
-            <div className="px-6 py-4 font-medium">
+            <div className="px-6 py-4 font-medium text-white">
               <p>{item.content}</p>
             </div>
           </div>
-          <div className='h-[1.5px] rounded ml-6 bg-gray-200 w-[560px]'></div>
+          <div className="h-[1.5px] rounded ml-6 bg-indigo-300 w-[560px]"></div>
         </div>
       ))}
     </div>
-  )
+  );
 }
 
-export default QuestionPage
+export default QuestionPage;

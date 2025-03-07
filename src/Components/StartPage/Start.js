@@ -1,21 +1,18 @@
-import React from 'react'
-import StartNavbar from './StartNavbar'
-import StartHero from './StartHero'
-import Question from './Question'
-import Program from './Program'
-import Categories from './Categories'
+import React from "react";
+import StartNavbar from "./StartNavbar";
+import StartHero from "./StartHero";
+import Question from "./Question";
+import Program from "./Program";
+import Categories from "./Categories";
 
 function Start() {
   return (
-    <div className=''>
-   
-    <div >
-        <StartHero/>
-    </div>
-    <div className='mt-[250px]'>
-      <Program/>
-    </div>
-    {/*<div
+    <div className="">
+      <div>
+        <StartHero />
+      </div>
+      <div className="mt-[250px]">{/* <Program/> */}</div>
+      {/*<div
         className="absolute h-full inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl"
       >
         <div
@@ -39,7 +36,7 @@ function Start() {
         ></div>
       </div>*/}
     </div>
-  )
+  );
 }
 
-export default Start
+export default Start;
