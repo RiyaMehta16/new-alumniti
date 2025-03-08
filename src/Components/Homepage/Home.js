@@ -4,7 +4,7 @@ import Homenavbar from "./Homenavbar";
 import HeroJob from "./HeroJob";
 import Sidebar from "../Sidebar/Sidebar";
 import { Loader } from "lucide-react"; // Import your loader component
-
+import Background from "../Background/Background";
 function Home() {
   const [loading, setLoading] = useState(true);
 
@@ -20,23 +20,28 @@ function Home() {
   return (
     <div>
       {loading ? (
-        // Show Loader while loading
-        <div className="flex items-center justify-center h-screen text-purple-700">
-          <Loader className="animate-spin duration-[2000ms] mr-2" /> Please Wait Your Dashboard is Rendering
-        </div>
+        <Background>
+          {/* // Show Loader while loading */}
+          <div className="flex items-center justify-center h-screen text-purple-700">
+            <Loader className="animate-spin duration-[2000ms] mr-2" /> Please
+            Wait Your Dashboard is Rendering
+          </div>
+        </Background>
       ) : (
         // Show Home component after loading is complete
         <>
-          <Navbar />
-          <div className="flex bg-zinc-100 w-full">
-            <div className="w-1/5">
-              <Sidebar />
+          <Background>
+            <Navbar />
+            <div className="flex  w-full">
+              <div className="w-1/5">
+                <Sidebar />
+              </div>
+              <div className="pt-4 w-4/5">
+                <Homenavbar />
+                <HeroJob />
+              </div>
             </div>
-            <div className="pt-4 w-4/5">
-              <Homenavbar />
-              <HeroJob />
-            </div>
-          </div>
+          </Background>
         </>
       )}
     </div>

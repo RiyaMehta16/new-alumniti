@@ -7,8 +7,8 @@ function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const apiUrl = process.env.REACT_APP_API_URL;
-  console.log(apiUrl);
 
   const handleLogin = async (e) => {
     e.preventDefault();
