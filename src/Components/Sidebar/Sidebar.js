@@ -6,11 +6,11 @@ function Sidebar() {
 
   const getActiveClass = ({ isActive, paths }) =>
     isActive || paths.some((path) => matchPath(path, location.pathname))
-      ? "text-blue-700 bg-zinc-100 transition-colors duration-300 ml-[50px] bg-black pt-3 pb-3 pl-[80px] rounded pr-[80px]"
-      : "text-black ml-[70px] transition-colors duration-300";
+      ? "text-blue-700 bg-indigo-100 transition-colors duration-300 ml-[50px] bg-black pt-3 pb-3 pl-[60px] rounded pr-[60px] "
+      : "text-indigo-100 ml-[70px] transition-colors duration-300";
 
   return (
-    <div className="bg-white h-screen sticky top-0 flex flex-col gap-8 pt-8">
+    <div className=" h-screen sticky top-0 flex flex-col gap-8 pt-8 min-w-[450px]">
       <div className="">
         <NavLink
           to="/home"
@@ -21,7 +21,7 @@ function Sidebar() {
           Home
         </NavLink>
       </div>
-      <div className="h-[1px] ml-[50px] bg-zinc-100 w-[200px]"></div>
+      <div className="h-[1px] ml-[50px] bg-indigo-100 w-[200px]"></div>
       <div className="">
         <NavLink
           to="/Events"
@@ -32,7 +32,7 @@ function Sidebar() {
           Events
         </NavLink>
       </div>
-      <div className="h-[1px] ml-[50px] bg-zinc-100 w-[200px]"></div>
+      <div className="h-[1px] ml-[50px] bg-indigo-100 w-[200px]"></div>
       <div className="">
         <NavLink
           to="/connection"
@@ -43,7 +43,8 @@ function Sidebar() {
           Network
         </NavLink>
       </div>
-      <div className="h-[1px] ml-[50px] bg-zinc-100 w-[200px]"></div>
+      <div className="h-[1px] ml-[50px] bg-indigo-100 w-[200px]"></div>
+
       <div className="">
         <NavLink
           to="/aimentor"
@@ -54,7 +55,9 @@ function Sidebar() {
           AI Mentor
         </NavLink>
       </div>
-      <div className="bg-zinc-200 mx-10 py-4 rounded-md">
+      <div className="h-[1px] ml-[50px] bg-indigo-100 w-[200px]"></div>
+
+      <div className=" rounded-md">
         <NavLink
           to="/chat"
           className={({ isActive }) =>
@@ -64,9 +67,9 @@ function Sidebar() {
           Messages
         </NavLink>
       </div>
+      <div className="h-[1px] ml-[50px] bg-indigo-100 w-[200px]"></div>
 
-      <div className="h-[1px] ml-[50px] bg-zinc-100 w-[200px]"></div>
-      <div className="bg-zinc-200 mx-10 py-4 rounded-md">
+      <div className=" rounded-md">
         <NavLink
           onClick={() => {
             localStorage.removeItem("token"); // Remove token
@@ -74,7 +77,7 @@ function Sidebar() {
           }}
           to="/login"
           className={({ isActive }) =>
-            getActiveClass({ isActive, paths: ["/aimentor"] })
+            getActiveClass({ isActive, paths: ["/login"] })
           }
         >
           Log Out

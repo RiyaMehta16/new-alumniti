@@ -19,20 +19,18 @@ function Home() {
 
   return (
     <div>
-      {loading ? (
-        <Background>
-          {/* // Show Loader while loading */}
-          <div className="flex items-center justify-center h-screen text-purple-700">
+      <Background className="-translate-y-40">
+        {loading ? (
+          // Show Loader while loading
+          <div className="flex items-center justify-center h-screen text-white">
             <Loader className="animate-spin duration-[2000ms] mr-2" /> Please
             Wait Your Dashboard is Rendering
           </div>
-        </Background>
-      ) : (
-        // Show Home component after loading is complete
-        <>
-          <Background>
+        ) : (
+          // Show Home component after loading is complete
+          <>
             <Navbar />
-            <div className="flex  w-full">
+            <div className="flex w-full">
               <div className="w-1/5">
                 <Sidebar />
               </div>
@@ -41,9 +39,9 @@ function Home() {
                 <HeroJob />
               </div>
             </div>
-          </Background>
-        </>
-      )}
+          </>
+        )}
+      </Background>
     </div>
   );
 }
