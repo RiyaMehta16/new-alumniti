@@ -11,9 +11,7 @@ import {
   School,
   SquarePen,
 } from "lucide-react";
-import { InstagramLogoIcon } from "@radix-ui/react-icons";
-import yadav from "../Assets/yadavmana.jpg";
-import anas from "../Assets/anas.jpg";
+
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -70,8 +68,8 @@ function UserProfile() {
               <div>
                 <img
                   className="h-[150px] w-[150px] rounded-full border-4 border-white shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out"
-                  src={user?.pic}
-                  alt="user"
+                  src={user?.img}
+                  alt="pic"
                 ></img>
               </div>
               <EllipsisVertical

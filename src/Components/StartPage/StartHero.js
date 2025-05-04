@@ -59,10 +59,16 @@ function StartHero() {
           </div>
         ) : (
           <div className="flex justify-center mt-6 space-x-4">
-            <button className="bg-gradient-to-b from-[#cdccd3] via-[#cdccd3] to-[#b6afd5] border-[#cdccd3] border hover:bg-gradient-to-b hover:from-white hover:via-white hover:to-[#b6afd5]  text-indigo-900  py-2 px-6 rounded  ">
+            <button
+              className="bg-gradient-to-b from-[#cdccd3] via-[#cdccd3] to-[#b6afd5] border-[#cdccd3] border hover:bg-gradient-to-b hover:from-white hover:via-white hover:to-[#b6afd5]  text-indigo-900  py-2 px-6 rounded  "
+              onClick={() => navigate("/login")}
+            >
               Register as Alumni
             </button>
-            <button className="border border-[#cdccd3] hover:bg-gradient-to-b hover:from-[#cdccd3] hover:via-[#cdccd3]  hover:to-[#b6afd5] text-[#cdccd3] py-2 px-6 rounded  transition hover:text-indigo-900">
+            <button
+              className="border border-[#cdccd3] hover:bg-gradient-to-b hover:from-[#cdccd3] hover:via-[#cdccd3]  hover:to-[#b6afd5] text-[#cdccd3] py-2 px-6 rounded  transition hover:text-indigo-900"
+              onClick={() => navigate("/login")}
+            >
               Register as Student
             </button>
           </div>

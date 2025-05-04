@@ -35,9 +35,12 @@ function Login() {
   return (
     <div className="flex h-screen  bg-white">
       <div className="bg-black h-screen w-1/4 flex items-center  justify-center">
-        <div className="animate-slideIn rotate-180">
+        <div
+          className="animate-slideIn rotate-180 hover:cursor-pointer"
+          onClick={() => navigate("/")}
+        >
           <p className="text-9xl font-extrabold tracking-wide  bg-gradient-to-b from-white via-white to-black text-transparent bg-clip-text transform -rotate-90">
-            Alum<span className="text-8xl text-blue-700">नीति</span>
+            Alum<span className="text-8xl text-indigo-700">नीति</span>
           </p>
         </div>
       </div>
