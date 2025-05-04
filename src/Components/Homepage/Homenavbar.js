@@ -1,11 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router";
+
 function Homenavbar() {
   // Function to add active class
-  const navigate = useNavigate();
   const getActiveClass = ({ isActive }) =>
-    isActive ? "text-white font-bold" : "text-indigo-100";
+    isActive ? "text-blue-700" : "text-black";
 
   return (
     <div className=" font-medium flex flex-col  pl-4 pr-4">
@@ -22,7 +21,6 @@ function Homenavbar() {
           Jobs
         </NavLink>
         <NavLink
-          // onClick={() => navigate("/collabration")}
           to="/collabration"
           className={({ isActive }) =>
             `font-medium flex gap-2 items-center ${getActiveClass({

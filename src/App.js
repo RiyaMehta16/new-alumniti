@@ -21,6 +21,7 @@ import Message from "./Components/Message/Message";
 import Test from "./Components/Test/Test";
 // Import the Chat component for Socket.IO messaging
 import Chat from "./Components/SocketChat/Chat";
+import Resume from "./Components/Updated/Resume";
 
 function App() {
   const [role, setRole] = useState(null);
@@ -124,6 +125,10 @@ function App() {
     {
       path: "/chat/:recipientId",
       element: <Chat />,
+    },
+    {
+      path: "/resume",
+      element: <Resume />,
     },
   ]);
 

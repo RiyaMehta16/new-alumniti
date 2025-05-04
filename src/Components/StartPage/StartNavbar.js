@@ -49,9 +49,9 @@ function StartNavbar() {
 
   const navigation = [
     { id: 1, title: "Home", url: "/" },
-    { id: 2, title: "Services", url: "/services" },
-    { id: 3, title: "Pricing", url: "/pricing" },
-    { id: 5, title: "Contact Us", url: "/contact" },
+    { id: 2, title: "Services", url: "/" },
+    { id: 3, title: "Pricing", url: "/" },
+    { id: 5, title: "Contact Us", url: "/" },
   ];
 
   console.log(token);

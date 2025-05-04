@@ -127,7 +127,7 @@ function HeroJob() {
           {job.map((job, index) => (
             <div
               key={index}
-              className="shadow-lg w-[750px] rounded-lg flex p-6 justify-between items-start hover:cursor-pointer"
+              className="shadow-lg w-[750px] rounded-lg flex p-6 justify-between items-start "
             >
               <div className="flex-1">
                 <div className="font-medium mb-4 text-gray-100">
