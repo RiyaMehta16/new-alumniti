@@ -37,7 +37,7 @@ function CreateEventPage() {
     <Background>
       <Navbar />
       <h1 className="text-3xl  mt-10 text-white font-bold mb-8 text-center">
-        Create a Job Post
+        Create an Event
       </h1>
       <div className=" flex justify-center ">
         <form
