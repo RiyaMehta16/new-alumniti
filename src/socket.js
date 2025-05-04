@@ -5,7 +5,7 @@ import { io } from "socket.io-client";
 // Ensure you have the token from login before connecting.
 const token = localStorage.getItem("token");
 
-const socket = io("http://localhost:5000", {
+const socket = io(`${process.env.REACT_APP_API_URL}`, {
   auth: { token },
   withCredentials: true,
 });
