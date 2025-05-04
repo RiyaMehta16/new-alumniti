@@ -64,12 +64,12 @@ function HeroJob() {
         </div>
       </div>
 
-      <div className="flex gap-14">
-        <div className="mt-8 flex flex-col gap-6">
+      <div className="flex gap-2">
+        <div className="mt-8 ml-8 flex flex-col gap-6">
           {job.map((job, index) => (
             <div
               key={index}
-              className="shadow-lg w-[750px] rounded-lg flex p-6 justify-between items-start "
+              className="shadow-2xl border border-indigo-300/20 w-[750px] rounded-lg flex p-6 justify-between items-start "
             >
               <div className="flex-1">
                 <div className="font-medium mb-4 text-gray-100">
@@ -115,11 +115,6 @@ function HeroJob() {
               </div>
 
               <div className="flex flex-col items-end">
-                <div
-                  className={`border-[2px] ${job.borderColor} w-[45px] h-[45px] rounded-full flex justify-center items-center ${job.textColor} mb-4`}
-                >
-                  {job.companyIcon}
-                </div>
                 <a
                   href={job.jobApplyLink}
                   className="bg-gradient-to-r from-black to-black mt-24 text-white rounded px-6 py-2 text-sm font-semibold shadow-lg  hover:shadow-xl transition-transform transform hover:scale-105"
@@ -130,7 +125,7 @@ function HeroJob() {
             </div>
           ))}
         </div>
-        <div className="shadow-lg w-[330px] h-[300px] rounded-lg ml-[30px] mt-8 p-4">
+        <div className="shadow-xl border border-indigo-300/10 w-[330px] h-[300px] rounded-lg ml-[30px] mt-8 p-4">
           <div className="text-center font-medium text-lg text-white mb-4">
             Filters
           </div>
@@ -157,7 +152,7 @@ function HeroJob() {
             />
           </div>
 
-          <div className="flex items-center gap-2 mt-4 text-sm">
+          {/* <div className="flex items-center gap-2 mt-4 text-sm">
             <input
               type="checkbox"
               id="work-from-home"
@@ -179,9 +174,9 @@ function HeroJob() {
             <label htmlFor="part-time" className="text-gray-400">
               Part time
             </label>
-          </div>
+          </div> */}
 
-          <div className="text-right mt-6">
+          <div className="text-right mt-10">
             <span className="text-indigo-200 cursor-pointer hover:underline">
               Clear all
             </span>
