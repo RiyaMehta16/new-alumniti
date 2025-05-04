@@ -1,150 +1,38 @@
-import React, { useEffect, useState } from "react";
-import socket from "../../socket";
+// src/Components/SocketChat/Chat.js
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import Background from "../Background/Background";
+import UserListSidebar from "./UserListSidebar";
+import ChatArea from "./ChatArea";
+import useAuth from "../../hooks/useAuth";
+import useFetchUsers from "../../hooks/useFetchUsers";
+import useSocket from "../../hooks/useSocket";
+import useChatMessages from "../../hooks/useChatMessages";
+import { extractId, getValidImgSrc } from "../utils/utils";
+
 const Chat = () => {
-  const { recipientId } = useParams(); // Recipient ID from URL (if any)
+  const { recipientId } = useParams();
   const navigate = useNavigate();
 
-  const [users, setUsers] = useState([]); // All users (same college except yourself)
-  const [onlineUsers, setOnlineUsers] = useState([]); // List of online user IDs
-  const [messages, setMessages] = useState([]); // Chat messages between you and the recipient (active conversation)
-  const [allMessages, setAllMessages] = useState([]); // Global messages for the logged-in user (for sidebar sorting)
-  const [content, setContent] = useState(""); // Message input field
-  const [otherTyping, setOtherTyping] = useState(false); // Whether the other person is typing
-  const [myId, setMyId] = useState(null); // Your own user ID (decoded from token)
-  const [myUser, setMyUser] = useState(null); // Your own full profile (including image)
+  const [content, setContent] = useState("");
 
-  // Utility function to extract _id from an object or return the string if already a string
-  const extractId = (id) => {
-    return typeof id === "object" && id !== null ? id._id : id;
-  };
+  const { myId, myUser } = useAuth();
+  const { users, setUsers } = useFetchUsers();
+  const {
+    onlineUsers,
+    otherTyping,
+    sendMessage: sendSocketMessage,
+    handleTyping: sendTyping,
+    handleStopTyping: sendStopTyping,
+  } = useSocket(recipientId);
+  const { messages, allMessages } = useChatMessages(recipientId, myId);
 
-  // Decode token to get your user ID (Already exists)
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      try {
-        // Split token into parts and decode
-        const parts = token.split(".");
-        if (parts.length === 3) {
-          const decoded = JSON.parse(atob(parts[1])); // Decode token
-          setMyId(decoded.userId);
-        }
-      } catch (error) {
-        console.error("Error decoding token:", error);
-      }
-    }
-  }, []);
-
-  // Fetch your own profile (Keep only one useEffect here)
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/api/auth/profile-alumni`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) =>
-        // If the API returns an array, take the first element; otherwise, use data directly.
-        setMyUser(Array.isArray(data) ? data[0] : data)
-      )
-      .catch((err) => console.error("Error fetching my profile:", err));
-  }, []);
-
-  // Fetch all users from the same college (except yourself)
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/api/auth/get-all-users`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setUsers(data))
-      .catch((err) => console.error("Error fetching users:", err));
-  }, []);
-
-  // Fetch global messages for the logged-in user for sidebar sorting
-  useEffect(() => {
-    if (myId) {
-      fetch(`${process.env.REACT_APP_API_URL}/api/auth/messages/${myId}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => setAllMessages(data))
-        .catch((err) => console.error("Error fetching all messages:", err));
-    }
-  }, [myId]);
-
-  // When a recipient is selected, fetch previous messages via socket event (Active conversation)
-  useEffect(() => {
-    if (recipientId) {
-      socket.emit("fetchMessages", { recipientId });
-    }
-  }, [recipientId]);
-
-  // Listen for socket events (Active conversation, online users, typing indicators, etc.)
-  useEffect(() => {
-    socket.on("previousMessages", (msgs) => {
-      setMessages(msgs);
-    });
-
-    socket.on("receiveMessage", (message) => {
-      setMessages((prevMessages) => [...prevMessages, message]);
-      // Also update global messages for sidebar sorting
-      setAllMessages((prev) => [...prev, message]);
-    });
-
-    socket.on("updateOnlineUsers", (onlineList) => {
-      setOnlineUsers(onlineList);
-    });
-
-    socket.on("typing", ({ senderId }) => {
-      if (recipientId && senderId === recipientId) {
-        setOtherTyping(true);
-      }
-    });
-
-    socket.on("stopTyping", ({ senderId }) => {
-      if (recipientId && senderId === recipientId) {
-        setOtherTyping(false);
-      }
-    });
-
-    return () => {
-      socket.off("previousMessages");
-      socket.off("receiveMessage");
-      socket.off("updateOnlineUsers");
-      socket.off("typing");
-      socket.off("stopTyping");
-    };
-  }, [recipientId]);
-
-  const sendMessage = () => {
-    if (content.trim() && recipientId) {
-      socket.emit("sendMessage", {
-        recipientId,
-        content,
-      });
-      setContent("");
-    }
-  };
-
-  const handleTyping = () => {
-    if (recipientId) socket.emit("typing", { recipientId });
-  };
-
-  const handleStopTyping = () => {
-    if (recipientId) socket.emit("stopTyping", { recipientId });
-  };
-
-  // Helper: Get sender's details from users list (for messages not sent by you)
+  /**
+   * Helper function to retrieve the details (name and image) of a sender based on their ID.
+   * @param {string} senderId - The ID of the sender.
+   * @returns {object} An object containing the sender's name and image, or default values.
+   */
   const getSenderDetails = (senderId) => {
     const user = users.find(
       (u) => u._id === senderId || u._id === extractId(senderId)
@@ -157,15 +45,13 @@ const Chat = () => {
     );
   };
 
-  // Helper: Returns a valid image source. If the image is empty or only whitespace, return default avatar.
-  const getValidImgSrc = (img) => {
-    return img && img.trim() !== "" ? img : "/avatar.png";
-  };
-
-  // Helper: Get the latest conversation message between you and a given user from global messages.
+  /**
+   * Helper function to get the latest message in the conversation between the current user and another user.
+   * @param {string} userId - The ID of the other user.
+   * @returns {object|null} The latest message object or null if no messages are found.
+   */
   const getLatestConversationMessage = (userId) => {
     if (!myId) return null;
-    // Filter messages that are part of the conversation between myId and userId.
     const conversation = allMessages.filter((msg) => {
       const senderId = extractId(msg.senderId);
       const recipientIdFromMsg = extractId(msg.recipientId);
@@ -175,12 +61,13 @@ const Chat = () => {
       );
     });
     if (conversation.length === 0) return null;
-    // Sort conversation by timestamp descending (latest first)
     conversation.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
     return conversation[0];
   };
 
-  // Sort users by the timestamp of the latest conversation message (most recent on top)
+  /**
+   * Sorts the list of users based on the timestamp of the latest message.
+   */
   const sortedUsers = [...users].sort((a, b) => {
     const msgA = getLatestConversationMessage(a._id);
     const msgB = getLatestConversationMessage(b._id);
@@ -189,173 +76,52 @@ const Chat = () => {
     return timeB - timeA;
   });
 
+  const handleSendMessage = () => {
+    sendSocketMessage(recipientId, content, setContent);
+  };
+
+  const handleStartTyping = () => {
+    sendTyping(recipientId);
+  };
+
+  const handleStopTyping = () => {
+    sendStopTyping(recipientId);
+  };
+
   return (
     <div>
       <Background className="">
         <Navbar />
         <div className="flex h-screen">
-          {/* Sidebar: List of users with online indicator */}
-          <div className="w-1/4 border-r p-4">
-            <h2 className="text-xl font-bold mb-4 text-indigo-50">Users</h2>
-            {sortedUsers.length > 0 ? (
-              sortedUsers.map((user) => {
-                const latestMsg = getLatestConversationMessage(user._id);
-                // Display "You:" prefix if you sent the last message
-                const preview = latestMsg
-                  ? extractId(latestMsg.senderId) === myId
-                    ? `You: ${latestMsg.content}`
-                    : latestMsg.content
-                  : "No messages yet";
-                return (
-                  <button
-                    key={user._id}
-                    className="btn btn-outline w-full mb-2 flex items-center gap-2"
-                    onClick={() => navigate(`/chat/${user._id}`)}
-                  >
-                    <div className="relative">
-                      <img
-                        src={getValidImgSrc(user.img)}
-                        alt={user.name || "Default avatar"}
-                        className="w-10 h-10 rounded-full object-cover"
-                      />
-                      {onlineUsers.includes(user._id) && (
-                        <span className="absolute bottom-0 right-0 block h-3 w-3 rounded-full ring-2 ring-white bg-green-500"></span>
-                      )}
-                    </div>
-                    <div className="flex-1 ">
-                      <span className="text-indigo-100">{user.name}</span>
-                      <p className="text-xs text-gray-500">{preview}</p>
-                    </div>
-                  </button>
-                );
-              })
-            ) : (
-              <p>No users found.</p>
-            )}
-          </div>
+          <UserListSidebar
+            users={sortedUsers}
+            onlineUsers={onlineUsers}
+            myId={myId}
+            navigate={navigate}
+            getValidImgSrc={getValidImgSrc}
+            getLatestConversationMessage={getLatestConversationMessage}
+            extractId={extractId}
+          />
 
-          {/* Chat Area */}
           <div className="w-3/4 p-4 flex flex-col">
             {recipientId ? (
-              <>
-                <div className="mb-4 border-b pb-2">
-                  {/* Display chat partner details */}
-                  {(() => {
-                    const partner = getSenderDetails(recipientId);
-                    return (
-                      <div className="flex items-center gap-3">
-                        <div className="relative">
-                          <img
-                            src={getValidImgSrc(partner.img)}
-                            alt={partner.name}
-                            className="w-10 h-10 rounded-full object-cover"
-                          />
-                          {onlineUsers.includes(recipientId) && (
-                            <span className="absolute bottom-0 right-0 block h-3 w-3 rounded-full ring-2 ring-white bg-green-500"></span>
-                          )}
-                        </div>
-                        <h2 className="text-xl font-bold text-indigo-50">
-                          {partner.name}
-                        </h2>
-                      </div>
-                    );
-                  })()}
-                </div>
-                <div className="flex-1 overflow-y-auto border p-4 mb-4 space-y-2">
-                  {messages.map((msg, index) => {
-                    const isMe = extractId(msg.senderId) === myId;
-                    const senderDetails = isMe
-                      ? {
-                          name: myUser?.name || "You",
-                          img: myUser?.img || "/avatar.png",
-                        }
-                      : getSenderDetails(msg.senderId);
-
-                    // Format the timestamp (assuming msg.timestamp is a valid date string)
-                    const formattedTime = new Date(
-                      msg.timestamp
-                    ).toLocaleTimeString([], {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    });
-
-                    return (
-                      <div
-                        key={index}
-                        className={`w-full flex ${
-                          isMe ? "justify-end" : "justify-start"
-                        } my-2`}
-                      >
-                        <div
-                          className={`flex items-start gap-2 max-w-xs ${
-                            isMe ? "flex-row-reverse" : ""
-                          }`}
-                        >
-                          <div className="relative">
-                            <img
-                              src={getValidImgSrc(senderDetails.img)}
-                              alt={senderDetails.name}
-                              className="w-10 h-10 rounded-full object-cover"
-                            />
-                            {!isMe &&
-                              onlineUsers.includes(extractId(msg.senderId)) && (
-                                <span className="absolute bottom-0 right-0 block h-3 w-3 rounded-full ring-2 ring-white bg-green-500"></span>
-                              )}
-                          </div>
-                          <div>
-                            <p
-                              className={`font-bold text-white/50 ${
-                                isMe ? "text-right" : "text-left"
-                              }`}
-                            >
-                              {senderDetails.name}
-                            </p>
-                            <div
-                              className={`p-2 rounded-lg ${
-                                isMe
-                                  ? "bg-blue-500 text-white"
-                                  : "bg-gray-200 text-black"
-                              }`}
-                            >
-                              <p>{msg.content}</p>
-                              <p
-                                className={`text-xs text-right mt-1 ${
-                                  isMe ? "text-gray-300" : "text-gray-500"
-                                }`}
-                              >
-                                {formattedTime}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-
-                  {/* Typing skeleton */}
-                  {otherTyping && (
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm italic text-gray-500">
-                        {getSenderDetails(recipientId).name} is typing...
-                      </span>
-                    </div>
-                  )}
-                </div>
-                <div className="flex">
-                  <input
-                    type="text"
-                    value={content}
-                    placeholder="Type a message..."
-                    onChange={(e) => setContent(e.target.value)}
-                    onFocus={handleTyping}
-                    onBlur={handleStopTyping}
-                    className="input input-bordered flex-1"
-                  />
-                  <button onClick={sendMessage} className="btn ml-2">
-                    Send
-                  </button>
-                </div>
-              </>
+              <ChatArea
+                recipientId={recipientId}
+                messages={messages}
+                content={content}
+                setContent={setContent}
+                sendMessage={handleSendMessage}
+                handleTyping={handleStartTyping}
+                handleStopTyping={handleStopTyping}
+                otherTyping={otherTyping}
+                myId={myId}
+                myUser={myUser}
+                users={users}
+                onlineUsers={onlineUsers}
+                getSenderDetails={getSenderDetails}
+                getValidImgSrc={getValidImgSrc}
+                extractId={extractId}
+              />
             ) : (
               <div className="flex items-center justify-center text-indigo-100 h-full">
                 <p>Select a user to start chatting</p>
