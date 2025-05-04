@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import axios from "axios";
-
+import Background from "../Background/Background";
 function CreateEventPage() {
   const [title, setTitle] = useState("");
   const [dateTime, setDateTime] = useState("");
@@ -34,112 +34,99 @@ function CreateEventPage() {
   };
 
   return (
-    <div className="bg-zinc-100 min-h-screen">
+    <Background>
       <Navbar />
-      <div className="container w-[800px] mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold text-gray-800 mb-6 flex justify-center">
-          Create New Event
-        </h1>
-
+      <h1 className="text-3xl  mt-10 text-white font-bold mb-8 text-center">
+        Create a Job Post
+      </h1>
+      <div className=" flex justify-center ">
         <form
           onSubmit={handleSubmit}
-          className="bg-white shadow-lg rounded-2xl p-6 text-gray-800 border border-gray-200"
+          className="shadow-lgrounded-2xl p-6 text-white border rounded-lg border-indigo-300/20"
         >
-          <div className="space-y-4">
+          <div className="gap-10 grid grid-cols-2 ">
             <div>
-              <label className="block text-gray-700 font-semibold mb-2">
-                Event Title
-              </label>
+              <label className="block  font-semibold ">Event Title</label>
               <input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-lg"
+                className="w-full p-2 border border-indigo-300/30 bg-white/10 rounded-lg"
                 required
               />
             </div>
             <div>
-              <label className="block text-gray-700 font-semibold mb-2">
-                Date & Time
-              </label>
+              <label className="block  font-semibold ">Date & Time</label>
               <input
                 type="datetime-local"
                 value={dateTime}
                 onChange={(e) => setDateTime(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-lg"
+                className="w-full p-2 border border-indigo-300/30 bg-white/10 rounded-lg"
                 required
               />
             </div>
             <div>
-              <label className="block text-gray-700 font-semibold mb-2">
-                Topic
-              </label>
+              <label className="block  font-semibold ">Topic</label>
               <input
                 type="text"
                 value={topic}
                 onChange={(e) => setTopic(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-lg"
+                className="w-full p-2 border border-indigo-300/30 bg-white/10 rounded-lg"
                 required
               />
             </div>
             <div>
-              <label className="block text-gray-700 font-semibold mb-2">
-                Organized By
-              </label>
+              <label className="block  font-semibold ">Organized By</label>
               <input
                 type="text"
                 value={organizedBy}
                 onChange={(e) => setOrganizedBy(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-lg"
+                className="w-full p-2 border border-indigo-300/30 bg-white/10 rounded-lg"
                 required
               />
             </div>
             <div>
-              <label className="block text-gray-700 font-semibold mb-2">
-                Format
-              </label>
+              <label className="block  font-semibold ">Format</label>
               <input
                 type="text"
                 value={format}
                 onChange={(e) => setFormat(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-lg"
+                className="w-full p-2 border border-indigo-300/30 bg-white/10 rounded-lg"
                 required
               />
             </div>
             <div>
-              <label className="block text-gray-700 font-semibold mb-2">
-                Join Link
-              </label>
+              <label className="block  font-semibold ">Join Link</label>
               <input
                 type="url"
                 value={joinLink}
                 onChange={(e) => setJoinLink(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-lg"
+                className="w-full p-2 border border-indigo-300/30 bg-white/10 rounded-lg"
                 required
               />
             </div>
-            <div>
-              <label className="block text-gray-700 font-semibold mb-2">
-                Description
-              </label>
+            <div className="col-span-2">
+              <label className="block  font-semibold ">Description</label>
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-lg"
+                className="w-full p-2 border border-indigo-300/30 bg-white/10 rounded-lg"
                 rows="4"
                 required
               ></textarea>
             </div>
+          </div>
+          <div className="text-center mt-10">
             <button
               type="submit"
-              className="bg-[#5b23d7] text-white w-full rounded-lg px-6 py-2 text-sm font-semibold shadow-lg hover:bg-[#3f0071] transition-transform transform hover:scale-105"
+              className="font-semibold border-l-2 border-l-n-2 hover:font-extrabold  bg-gradient-to-b from-[#cdccd3] via-[#cdccd3] to-[#b6afd5] border-[#cdccd3] border hover:bg-gradient-to-b hover:from-white hover:via-white hover:to-[#b6afd5]  text-indigo-900  py-2 px-6 rounded"
             >
               Create Event
             </button>
           </div>
         </form>
       </div>
-    </div>
+    </Background>
   );
 }
 

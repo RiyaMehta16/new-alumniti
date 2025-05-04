@@ -49,9 +49,9 @@ function Connection() {
                     <Link
                       key={user._id}
                       to={`/otheruser/${user._id}`}
-                      className="user-card border-2 w-[300px] rounded-lg flex flex-col items-center h-[340px] border-gray-300 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-2xl bg-indigo-900/80"
+                      className="user-card border-2 w-[300px] rounded-lg flex flex-col items-center h-[340px] border-gray-300 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-2xl bg-indigo-900/80 bg-gradient-to-b from-indigo-900 to-indigo-950  "
                     >
-                      <div className="w-full h-[100px] bg-gradient-to-r from-indigo-500 to-indigo-700 rounded-t-lg"></div>
+                      <div className="w-full h-[100px] bg-gradient-to-r from-indigo-200 to-indigo-500 rounded-t-lg"></div>
                       <div className="flex items-center justify-center mt-[-60px]">
                         <img
                           className="h-[120px] w-[120px] rounded-full border-4 border-white"
