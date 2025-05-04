@@ -46,7 +46,7 @@ function HeroCollabration() {
 
   return (
     <div>
-      <Background className="-mt-40">
+      <Background className="">
         <Navbar />
         <div className="flex w-full">
           <div className="w-1/5">

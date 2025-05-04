@@ -26,7 +26,7 @@ function Connection() {
   }, []);
   return (
     <>
-      <Background className="-mt-40">
+      <Background className="">
         <div className=" w-full">
           <Navbar />
           <div className="flex w-full">

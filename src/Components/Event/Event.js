@@ -43,7 +43,7 @@ function Event() {
 
   return (
     <div className=" min-h-screen ">
-      <Background className="-mt-40">
+      <Background className="">
         <div>
           <Navbar />
         </div>

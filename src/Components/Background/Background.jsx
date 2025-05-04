@@ -6,7 +6,7 @@ const Background = ({ children, className = "" }) => {
       className={`relative  w-full min-h-full bg-cover bg-center ${className} `}
     >
       <div
-        className={`relative  w-full h-full min-h-screen bg-cover bg-center pb-36 pt-40 `}
+        className={`relative  w-full h-full min-h-screen bg-cover bg-center pb-36  `}
         style={{
           backgroundImage: `url(${background})`,
         }}

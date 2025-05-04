@@ -65,64 +65,6 @@ function HeroJob() {
       </div>
 
       <div className="flex gap-14">
-        <div className="shadow-lg w-[330px] h-[300px] rounded-lg ml-[30px] mt-8 p-4">
-          <div className="text-center font-medium text-lg text-white mb-4">
-            Filters
-          </div>
-
-          <div className="text-sm font-semibold text-gray-400 mb-2">
-            Profile
-          </div>
-          <div className="border border-gray-300 rounded-lg p-2">
-            <input
-              type="text"
-              className="text-sm outline-none w-full"
-              placeholder="e.g. React Developer"
-            />
-          </div>
-
-          <div className="text-sm font-semibold text-gray-400 mt-4 mb-2">
-            Location
-          </div>
-          <div className="border border-gray-300 rounded-lg p-2">
-            <input
-              type="text"
-              className="text-sm outline-none w-full"
-              placeholder="e.g. Delhi"
-            />
-          </div>
-
-          <div className="flex items-center gap-2 mt-4 text-sm">
-            <input
-              type="checkbox"
-              id="work-from-home"
-              className="form-checkbox"
-              aria-label="Work from home"
-            />
-            <label htmlFor="work-from-home" className="text-gray-400">
-              Work from home
-            </label>
-          </div>
-
-          <div className="flex items-center gap-2 mt-2 text-sm">
-            <input
-              type="checkbox"
-              id="part-time"
-              className="form-checkbox"
-              aria-label="Part time"
-            />
-            <label htmlFor="part-time" className="text-gray-400">
-              Part time
-            </label>
-          </div>
-
-          <div className="text-right mt-6">
-            <span className="text-indigo-200 cursor-pointer hover:underline">
-              Clear all
-            </span>
-          </div>
-        </div>
-
         <div className="mt-8 flex flex-col gap-6">
           {job.map((job, index) => (
             <div
@@ -187,6 +129,63 @@ function HeroJob() {
               </div>
             </div>
           ))}
+        </div>
+        <div className="shadow-lg w-[330px] h-[300px] rounded-lg ml-[30px] mt-8 p-4">
+          <div className="text-center font-medium text-lg text-white mb-4">
+            Filters
+          </div>
+
+          <div className="text-sm font-semibold text-gray-400 mb-2">
+            Profile
+          </div>
+          <div className="border border-gray-300 rounded-lg ">
+            <input
+              type="text"
+              className="text-sm outline-none w-full bg-white/10 p-2"
+              placeholder="e.g. React Developer"
+            />
+          </div>
+
+          <div className="text-sm font-semibold text-gray-400 mt-4 mb-2">
+            Location
+          </div>
+          <div className="border border-gray-300 rounded-lg ">
+            <input
+              type="text"
+              className="text-sm outline-none w-full  bg-white/10 p-2"
+              placeholder="e.g. Delhi"
+            />
+          </div>
+
+          <div className="flex items-center gap-2 mt-4 text-sm">
+            <input
+              type="checkbox"
+              id="work-from-home"
+              className="form-checkbox "
+              aria-label="Work from home"
+            />
+            <label htmlFor="work-from-home" className="text-gray-400">
+              Work from home
+            </label>
+          </div>
+
+          <div className="flex items-center gap-2 mt-2 text-sm">
+            <input
+              type="checkbox"
+              id="part-time"
+              className="form-checkbox"
+              aria-label="Part time"
+            />
+            <label htmlFor="part-time" className="text-gray-400">
+              Part time
+            </label>
+          </div>
+
+          <div className="text-right mt-6">
+            <span className="text-indigo-200 cursor-pointer hover:underline">
+              Clear all
+            </span>
+          </div>
         </div>
       </div>
     </div>

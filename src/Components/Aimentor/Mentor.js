@@ -7,7 +7,7 @@ import Background from "../Background/Background";
 function Mentor() {
   return (
     <div className="">
-      <Background className="-mt-40">
+      <Background className="">
         <div>
           <Navbar />
         </div>

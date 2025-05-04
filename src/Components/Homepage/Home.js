@@ -19,7 +19,7 @@ function Home() {
 
   return (
     <div>
-      <Background className="-translate-y-40">
+      <Background className="min-h-screen ">
         {loading ? (
           // Show Loader while loading
           <div className="flex items-center justify-center h-screen text-white">

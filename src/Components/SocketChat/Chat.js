@@ -191,7 +191,7 @@ const Chat = () => {
 
   return (
     <div>
-      <Background className="-mt-40">
+      <Background className="">
         <Navbar />
         <div className="flex h-screen">
           {/* Sidebar: List of users with online indicator */}

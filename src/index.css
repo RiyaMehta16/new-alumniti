@@ -4,12 +4,25 @@
 
 body {
   margin: 0;
-    font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Solid fallback + gradient */
+  background-color: #291f44;
+  background-image: linear-gradient(
+    to bottom,
+    #291f44 0%,
+    #252b58 50%,
+    #291f44 100%
+  );
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }

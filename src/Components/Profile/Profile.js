@@ -59,7 +59,7 @@ function Profile() {
 
   return (
     <div>
-      <Background className="-mt-40">
+      <Background className="">
         <div>
           <Navbar />
         </div>

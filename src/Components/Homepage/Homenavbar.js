@@ -4,16 +4,15 @@ import { NavLink } from "react-router-dom";
 function Homenavbar() {
   // Function to add active class
   const getActiveClass = ({ isActive }) =>
-    isActive ? "text-blue-700" : "text-black";
+    isActive ? "text-blue-400 font-bold" : "text-white/70 font-medium";
 
   return (
-    <div className=" font-medium flex flex-col  pl-4 pr-4">
-      <li className="flex gap-6">
+    <div className="font-medium flex flex-col pl-4 pr-4">
+      <div className="flex justify-center gap-6 text-white/70 font-medium">
         <NavLink
-          exact
           to="/home"
           className={({ isActive }) =>
-            `font-medium flex gap-2 items-center ${getActiveClass({
+            `flex gap-2 items-center hover:cursor-pointer ${getActiveClass({
               isActive,
             })}`
           }
@@ -23,14 +22,14 @@ function Homenavbar() {
         <NavLink
           to="/collabration"
           className={({ isActive }) =>
-            `font-medium flex gap-2 items-center ${getActiveClass({
+            `flex gap-2 items-center hover:cursor-pointer ${getActiveClass({
               isActive,
             })}`
           }
         >
-          Collabration
+          Collaboration
         </NavLink>
-      </li>
+      </div>
       <div className="bg-gray-300 w-full mt-2 border-t"></div>
     </div>
   );

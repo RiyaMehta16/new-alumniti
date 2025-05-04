@@ -20,19 +20,10 @@ function StartHero() {
     }
   };
   return (
-    <div className="-translate-y-12 flex">
+    <div className="-translate-y-12 pt-40 flex">
       {/* hero text */}
       <div className="pl-44 -m-10 -mr-60">
-        <div className="z-10 flex mt-[130px] items-center justify-center ">
-          {/* <div className="group rounded-full border border-[#b6afd5]  text-base text-white transition-all ease-in ">
-            <div className="flex items-center justify-center pl-4 pr-2 py-2 transition ease-out text-[#b6afd5] ">
-              <span className="flex gap-2 text-sm">
-                ✨ Introducing Alumनीति <ArrowRight size={20} />
-              </span>
-              <div className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
-            </div>
-          </div> */}
-        </div>
+        <div className="z-10 flex mt-[130px] items-center justify-center "></div>
         <div className="flex justify-center text-center mt-6 flex-col items-center ">
           <p className=" font-semibold   text-6xl w-[800px] text-transparent bg-clip-text   bg-gradient-to-b from-[#cdccd3] via-[#b6afd5] to-[#cdccd3]">
             {/* Connect. Learn. Succeed. Alumni & Mentors Guiding Your Future */}
