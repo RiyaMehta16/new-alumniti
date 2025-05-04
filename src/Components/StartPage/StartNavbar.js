@@ -47,13 +47,6 @@ function StartNavbar() {
     };
   }, [lastScrollY]);
 
-  const navigation = [
-    { id: 1, title: "Home", url: "/" },
-    { id: 2, title: "Services", url: "/" },
-    { id: 3, title: "Pricing", url: "/" },
-    { id: 5, title: "Contact Us", url: "/" },
-  ];
-
   console.log(token);
 
   return (
@@ -73,32 +66,17 @@ function StartNavbar() {
           />
         </NavLink>
 
-        <nav className=" flex space-x-10  justify-center lg:flex-row cursor-pointer backdrop-blur-2xl  px-5 py-4  border border-[n-3] rounded-full -translate-x-6">
-          {navigation.map((item) => (
-            <a
-              href={item.url}
-              key={item.id}
-              onClick={() => navigate(item.url)}
-              className={`text-white  text-sm transition-colors hover:font-extrabold uppercase  ${
-                item.url === pathname.pathname ? "text-bold" : ""
-              }`}
-            >
-              {item.title}
-            </a>
-          ))}
-        </nav>
-
         {!user ? (
-          <div className="backdrop-blur-2xl border border-n-2 flex text-center  bg-[#101743]/20 translate-y-1 -translate-x-16 rounded-full ">
+          <div className="backdrop-blur-2xl border border-n-2 flex text-center bg-black/30 translate-y-1 -translate-x-16 rounded-md ">
             <a
               href="/register"
               onClick={() => navigate("/register")}
-              className="mr-5  text-white translate-y-0 px-4 py-3  translate-x-4 font-code font-medium   hover:cursor-pointer transition-colors hover:font-extrabold lg:block"
+              className="mr-5  text-white translate-y-0 px-3 py-2  translate-x-4 font-code font-medium   hover:cursor-pointer transition-colors hover:font-extrabold lg:block"
             >
               Register
             </a>
             <button
-              className="hidden lg:flex bg-gradient-to-r px-4 py-3 from-[#403242] via-[#101743]/60 to-[#403242] font-semibold rounded-full border border-l-2 border-l-n-2 hover:font-extrabold  text-white"
+              className=" font-semibold border-l-2 border-l-n-2 hover:font-extrabold  bg-gradient-to-b from-[#cdccd3] via-[#cdccd3] to-[#b6afd5] border-[#cdccd3] border hover:bg-gradient-to-b hover:from-white hover:via-white hover:to-[#b6afd5]  text-indigo-900  py-2 px-6 rounded"
               onClick={() => navigate("/login")}
             >
               Log In

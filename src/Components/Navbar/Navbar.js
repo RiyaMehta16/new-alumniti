@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import logo from "../Assets/alumnitiLogo.png";
 import { useEffect } from "react";
 import axios from "axios";
-import Background from "../Background/Background";
+
 function Navbar() {
   // Function to add active class
   const getActiveClass = ({ isActive }) =>
