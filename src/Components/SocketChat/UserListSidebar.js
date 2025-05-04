@@ -12,7 +12,15 @@ const UserListSidebar = ({
 }) => {
   return (
     <div className="min-h-screen border-r mt-5 rounded-md ml-2 border-gray-800 p-4 bg-gray-900 rounded-l-md shadow-md flex flex-col">
-      <h2 className="text-xl font-semibold mb-4 text-indigo-300">Users</h2>
+      <div className="flex gap-8 rounded-md  bg-black/40 py-2 px-3">
+        <button
+          className=" text-xl font-semibold  text-indigo-300"
+          onClick={() => navigate("/home")}
+        >
+          &larr;
+        </button>
+        <span className="text-xl font-semibold text-indigo-300">Users</span>
+      </div>
       <div className="flex-1 space-y-5 overflow-y-auto ">
         {users.length > 0 ? (
           users.map((user) => {

@@ -229,6 +229,7 @@ const Chat = () => {
   return (
     <div className="  flex flex-col  ">
       <Navbar />
+
       <div className="flex-1 flex overflow-hidden ">
         <div className="w-1/4 h-full ">
           <UserListSidebar

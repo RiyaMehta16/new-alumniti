@@ -71,9 +71,9 @@ function Event() {
             </div>
 
             <div className="w-full">
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-5">
                 {event.map((event, index) => (
-                  <div className="bg-white/10  shadow-lg w-5/6 mx-auto rounded-2xl p-6 text-indigo-200 border border-gray-200">
+                  <div className="bg-white/10  shadow-xl w-5/6 mx-auto rounded-2xl p-6 text-indigo-200 border border-indigo-300/20">
                     <p className="mb-2 flex gap-1">
                       {event.postedBy.name}
                       <span>({event.postedBy.role})</span>
@@ -86,44 +86,45 @@ function Event() {
                         {formatDate(event.dateTime)}
                       </span>
                     </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="mb-1">
+                        <h3 className="text-lg font-semibold text-indigo-300">
+                          Topic:
+                        </h3>
+                        <p className="text-indigo-100">{event.topic}</p>
+                      </div>
 
-                    <div className="mb-1">
-                      <h3 className="text-lg font-semibold text-indigo-300">
-                        Topic:
-                      </h3>
-                      <p className="text-indigo-100">{event.topic}</p>
-                    </div>
+                      <div className="mb-1">
+                        <h3 className="text-lg font-semibold text-indigo-300">
+                          Organized by:
+                        </h3>
+                        <p className="text-indigo-100">{event.organizedBy}</p>
+                      </div>
 
-                    <div className="mb-1">
-                      <h3 className="text-lg font-semibold text-indigo-300">
-                        Organized by:
-                      </h3>
-                      <p className="text-indigo-100">{event.organizedBy}</p>
-                    </div>
+                      <div className="mb-1">
+                        <h3 className="text-lg font-semibold text-indigo-300">
+                          Format:
+                        </h3>
+                        <p className="text-indigo-100">{event.format}</p>
+                      </div>
 
-                    <div className="mb-1">
-                      <h3 className="text-lg font-semibold text-indigo-300">
-                        Format:
-                      </h3>
-                      <p className="text-indigo-100">{event.format}</p>
-                    </div>
-
-                    <div className="mb-1">
-                      <h3 className="text-lg font-semibold text-indigo-300">
-                        Join Link:
-                      </h3>
-                      <a
-                        href={event.joinLink}
-                        className="text-indigo-100 font-bold hover:underline"
-                      >
-                        Click here to join
-                      </a>
-                    </div>
-                    <div className="mb-1">
-                      <h3 className="text-lg font-semibold text-indigo-300">
-                        About:
-                      </h3>
-                      <p className="text-indigo-100">{event.description}</p>
+                      <div className="mb-1">
+                        <h3 className="text-lg font-semibold text-indigo-300">
+                          About:
+                        </h3>
+                        <p className="text-indigo-100">{event.description}</p>
+                      </div>
+                      <div className="mb-1 flex mt-5 items-center gap-10">
+                        <h3 className="text-lg font-semibold text-indigo-300">
+                          Join Link:
+                        </h3>
+                        <a
+                          href={event.joinLink}
+                          className="bg-white text-indigo-950 rounded px-3 py-2 text-sm font-semibold shadow-lg hover:bg-indigo-300 hover:text-indigo-900 transition-transform transform hover:scale-105 "
+                        >
+                          Join
+                        </a>
+                      </div>
                     </div>
                   </div>
                 ))}
