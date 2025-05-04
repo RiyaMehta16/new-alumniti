@@ -9,6 +9,7 @@ const socket = io(`${process.env.REACT_APP_API_URL}`, {
   auth: { token },
   withCredentials: true,
   transports: ["polling", "websocket"],
+  addTrailingSlash: false,
 });
 
 export default socket;
